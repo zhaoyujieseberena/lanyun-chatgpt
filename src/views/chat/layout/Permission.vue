@@ -67,6 +67,7 @@ function handlePress(event: KeyboardEvent) {
 					<p>日常维护，对网站安全的检查都有一定的成本；我们承诺，不会对用户的请求进行记录</p>
 					<p>我们目标是构建无需翻墙的稳定GPT服务；后续，我们也会在第一时间更新到GPT4.0模型</p>
 					<p>为了网站后续的稳定运行，请前往<a style="color:red" href="https://www.baidu.com">魔术铅笔</a>购买请求次数（已捐赠的用户会赠送授权码）</p>
+					<p>网站还在调试，跳转百度为正常现象</p>
         </header>
         <NInput v-model:value="token" type="password" placeholder="" @keypress="handlePress" />
         <NButton
