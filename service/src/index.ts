@@ -1,8 +1,7 @@
 import express from 'express'
 import type { ChatContext, ChatMessage } from './chatgpt'
 import { chatConfig, chatReplyProcess } from './chatgpt'
-import { auth } from './middleware/auth'
-import {createUser, getUser, updateTimes} from './storage/mongo'
+import { createUser, getUser, updateTimes } from './storage/mongo'
 
 const app = express()
 const router = express.Router()
@@ -17,9 +16,8 @@ app.all('*', (_, res, next) => {
   next()
 })
 
-router.post('/chat-process', auth, async (req, res) => {
+router.post('/chat-process', async (req, res) => {
   res.setHeader('Content-type', 'application/octet-stream')
-
   try {
     const { prompt, options = {} } = req.body as { prompt: string; options?: ChatContext }
     let firstChunk = true
@@ -99,7 +97,7 @@ router.post('/cut-time', async (req, res) => {
   try {
     const { token } = req.body as { token: string }
     const user = await updateTimes(token)
-    res.send({ status: 'Success', message: `更新成功`, data: null })
+    res.send({ status: 'Success', message: '更新成功', data: null })
   }
   catch (error) {
     res.send({ status: 'Fail', message: error.message, data: null })
