@@ -17,11 +17,18 @@ app.all('*', (_, res, next) => {
   next()
 })
 
-router.post('/chat-process', auth, async (req, res) => {
+router.post('/chat-process', async (req, res) => {
   res.setHeader('Content-type', 'application/octet-stream')
 
   try {
     const { prompt, options = {} } = req.body as { prompt: string; options?: ChatContext }
+    const authHeader = req.headers.authorization
+
+    // 检查header是否存在
+    if (!authHeader) {
+      res.status(401).json({ error: 'Authorization header is missing' })
+      return
+    }
     let firstChunk = true
     await chatReplyProcess(prompt, options, (chat: ChatMessage) => {
       res.write(firstChunk ? JSON.stringify(chat) : `\n${JSON.stringify(chat)}`)
