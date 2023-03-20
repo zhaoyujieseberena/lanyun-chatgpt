@@ -19,7 +19,15 @@ const { isMobile } = useBasicLayout()
 
 const collapsed = computed(() => appStore.siderCollapsed)
 
-const needPermission = computed(() => !authStore.token)
+// const needPermission = computed(() => (!authStore.token || authStore.times >= 4))
+const needPermission = computed(() => {
+  // 有token
+  if (authStore.token)
+    return false
+  // 没有token，判断缓存是否大于4
+  return parseInt(localStorage.getItem('accessAuth') || '') >= 4
+},
+)
 
 const getMobileClass = computed(() => {
   if (isMobile.value)
@@ -38,6 +46,8 @@ onMounted(async () => {
   const userInfo = await fetchGetUser(authStore.token || '')
   if (userInfo.data === null)
     authStore.removeToken()
+  if (!localStorage.getItem('accessAuth'))
+    localStorage.setItem('accessAuth', '0')
 })
 </script>
 

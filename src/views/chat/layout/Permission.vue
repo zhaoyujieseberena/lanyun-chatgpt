@@ -43,6 +43,10 @@ async function handleVerify() {
   }
 }
 
+async function handleJump() {
+  window.location.href = 'https://www.vifaka.com/list/97171ae5d1327582'
+}
+
 function handlePress(event: KeyboardEvent) {
   if (event.key === 'Enter' && !event.shiftKey) {
     event.preventDefault()
@@ -63,12 +67,17 @@ function handlePress(event: KeyboardEvent) {
             {{ $t('common.unauthorizedTips') }}
           </p>
           <Icon403 class="w-[200px] m-auto" />
-					<p>近期使用人数暴增，而我们的网站运营也需要一定成本，不仅包括OPENAI 对我们的收费</p>
-					<p>日常维护，对网站安全的检查都有一定的成本；我们承诺，不会对用户的请求进行记录</p>
-					<p>我们目标是构建无需翻墙的稳定GPT服务；后续，我们也会在第一时间更新到GPT4.0模型</p>
-					<p>为了网站后续的稳定运行，请前往<a style="color:red" href="https://www.vifaka.com/list/97171ae5d1327582">魔术铅笔</a>购买请求次数（已捐赠的用户会赠送授权码）</p>
+          <p>网站宗旨为“构建无需翻墙稳定且快速的GPT对话服务”，近期随着使用人数暴增，网站运营需要大量成本，除了 `GPT3.5-Turbo` 接口费用，对网站安全检查与维护也需要一定成本，为了网站稳定运行，请点击红色按钮购买请求次数，后续OPENAI开放GPT4.0模型接口后也会第一时间接入；合作可+V: 17390763166</p>
         </header>
         <NInput v-model:value="token" type="password" placeholder="" @keypress="handlePress" />
+        <NButton
+          block
+          color="red"
+          type="primary"
+          @click="handleJump"
+        >
+          跳转购买
+        </NButton>
         <NButton
           block
           type="primary"

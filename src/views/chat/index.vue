@@ -60,11 +60,22 @@ async function onConversation() {
   if (!message || message.trim() === '')
     return
   const userInfo = await fetchGetUser(authStore.token || '')
-  if (userInfo.data.times <= 0) {
-    alert('当前授权码次数已用完')
-    return
+  const times = parseInt(localStorage.getItem('accessAuth') || '')
+  if (userInfo.data !== null) {
+    if (userInfo.data.times <= 0) {
+      alert('当前授权码次数已用完')
+      return
+    }
+    await fetchCutTimes(authStore.token || '')
   }
-  await fetchCutTimes(authStore.token || '')
+  else {
+    if (times === 0)
+      authStore.setToken('Train')
+
+    if (times >= 4)
+      authStore.removeToken()
+    localStorage.setItem('accessAuth', `${times + 1}`)
+  }
   controller = new AbortController()
 
   addChat(
