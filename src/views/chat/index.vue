@@ -69,7 +69,7 @@ async function onConversation() {
     await fetchCutTimes(authStore.token || '')
   }
   else {
-    if (times === 0)
+    if (times <= 3)
       authStore.setToken('Train')
 
     if (times >= 4)
