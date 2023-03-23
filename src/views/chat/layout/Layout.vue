@@ -21,11 +21,12 @@ const collapsed = computed(() => appStore.siderCollapsed)
 
 // const needPermission = computed(() => (!authStore.token || authStore.times >= 4))
 const needPermission = computed(() => {
+  return true
   // 有token
-  if (authStore.token)
-    return false
-  // 没有token，判断缓存是否大于4
-  return parseInt(localStorage.getItem('accessAuth') || '') >= 4
+  // if (authStore.token)
+  //   return false
+  // // 没有token，判断缓存是否大于4
+  // return parseInt(localStorage.getItem('accessAuth') || '') >= 4
 },
 )
 
