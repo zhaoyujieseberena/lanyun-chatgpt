@@ -67,7 +67,7 @@ function handlePress(event: KeyboardEvent) {
             {{ $t('common.unauthorizedTips') }}
           </p>
           <Icon403 class="w-[200px] m-auto" />
-          <p>网站宗旨为“构建无需翻墙稳定且快速的GPT对话服务”，近期随着使用人数暴增，网站运营需要大量成本，除了 `GPT3.5-Turbo` 接口费用，对网站安全检查与维护也需要一定成本，为了网站稳定运行，请点击红色按钮购买请求次数，后续OPENAI开放GPT4.0模型接口后也会第一时间接入；合作可+V: 17390763166</p>
+          <p>随着使用人数激增，OpenAI工作人员也通过邮箱联系到了我们，邮件大意是希望双方达成合作意向，一旦合作成功将会调整（降低）接口费用，在这期间接口会不可用，大约2~4个工作日恢复，恢复后对话价格会进一步降低，敬请期待！</p>
         </header>
         <NInput v-model:value="token" type="password" placeholder="" @keypress="handlePress" />
         <NButton
