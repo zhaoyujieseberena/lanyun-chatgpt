@@ -14,8 +14,6 @@ const authStore = useAuthStore();
 
 const { isMobile } = useBasicLayout();
 const show = ref(false);
-let sliderValue = ref(300);
-const inputValue = ref(""); // 输入框的值
 const modelOptions: { label: string; key: string; value: string }[] = [
 	{ label: "Chatgpt3.5", key: "3.5", value: "3.5" },
 	{ label: "Chatgpt4.0", key: "3.5", value: "4.0" },
@@ -72,19 +70,6 @@ const max_2_st = computed({
 		appStore.setmax_2(parseInt(value));
 	},
 });
-
-// 监听输入框的变化
-const onInputValueChange = (newValue: string) => {
-	// 如果输入框的值是一个数字，则更新滑块的值
-	const parsedValue = parseFloat(newValue);
-	if (!isNaN(parsedValue)) {
-		sliderValue.value = parsedValue;
-	}
-	// 否则，将输入框的值重置为空字符串
-	else {
-		inputValue.value = "";
-	}
-};
 
 function handleAdd() {
 	chatStore.addHistory({ title: "New Chat", uuid: Date.now(), isEdit: false });
